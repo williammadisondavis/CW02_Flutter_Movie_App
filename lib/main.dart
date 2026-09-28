@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 
+import 'screens/home_screen.dart';
+
 void main() {
-  runApp(const MainApp());
+  runApp(const MovieApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MovieApp extends StatelessWidget {
+  const MovieApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Movie Watchlist',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.deepPurple,
+      ),
+      home: const HomeScreen(),
     );
   }
 }
