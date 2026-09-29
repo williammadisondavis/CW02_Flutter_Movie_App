@@ -22,7 +22,15 @@ class HomeScreen extends StatelessWidget {
               contentPadding: const EdgeInsets.all(16),
 
               // Temporary movie icon.
-              leading: const CircleAvatar(child: Icon(Icons.movie)),
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: Image.asset(
+                  movie.posterPath,
+                  width: 50,
+                  height: 70,
+                  fit: BoxFit.cover,
+                ),
+              ),
 
               title: Text(
                 movie.title,
