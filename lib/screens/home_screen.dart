@@ -14,7 +14,16 @@ class HomeScreen extends StatelessWidget {
         title: const Text(
           'Movie Watchlist',
           style: TextStyle(
-            fontWeight: FontWeight.bold,
+            fontSize: 24,
+            fontWeight: FontWeight.w900,
+            letterSpacing: 1.1,
+            shadows: [
+              Shadow(
+                blurRadius: 8,
+                offset: Offset(0, 2),
+                color: Colors.deepPurpleAccent,
+              ),
+            ],
           ),
         ),
       ),
@@ -26,9 +35,19 @@ class HomeScreen extends StatelessWidget {
           final movie = sampleMovies[index];
 
           return Card(
-            margin: const EdgeInsets.only(bottom: 16),
+            margin: const EdgeInsets.only(bottom: 18),
+            elevation: 8,
+            shadowColor: Colors.black54,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
+              side: const BorderSide(
+                color: Colors.deepPurpleAccent,
+                width: 0.8,
+              ),
+            ),
+
             child: InkWell(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(18),
 
               onTap: () {
                 Navigator.push(
@@ -48,7 +67,6 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-
                       child: Image.asset(
                         movie.posterPath,
                         width: 85,
@@ -66,8 +84,16 @@ class HomeScreen extends StatelessWidget {
                           Text(
                             movie.title,
                             style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 21,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 0.3,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 4,
+                                  offset: Offset(0, 1),
+                                  color: Colors.black87,
+                                ),
+                              ],
                             ),
                           ),
 
@@ -89,9 +115,7 @@ class HomeScreen extends StatelessWidget {
                                 size: 17,
                                 color: Colors.deepPurpleAccent,
                               ),
-
                               SizedBox(width: 5),
-
                               Text(
                                 'Tap for details',
                                 style: TextStyle(

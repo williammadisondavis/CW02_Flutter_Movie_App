@@ -15,7 +15,19 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(movie.title),
+        title: Text(
+          movie.title,
+          style: const TextStyle(
+            fontWeight: FontWeight.w800,
+            shadows: [
+              Shadow(
+                blurRadius: 6,
+                offset: Offset(0, 2),
+                color: Colors.deepPurpleAccent,
+              ),
+            ],
+          ),
+        ),
       ),
 
       body: SingleChildScrollView(
@@ -27,7 +39,6 @@ class DetailsScreen extends StatelessWidget {
             Center(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(18),
-
                 child: Image.asset(
                   movie.posterPath,
                   height: 380,
@@ -49,15 +60,19 @@ class DetailsScreen extends StatelessWidget {
               movie.title,
               style: const TextStyle(
                 fontSize: 30,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 0.5,
+                shadows: [
+                  Shadow(
+                    blurRadius: 6,
+                    offset: Offset(0, 2),
+                    color: Colors.black87,
+                  ),
+                ],
               ),
-            )
-                .animate()
-                .fadeIn(
-                  delay: 150.ms,
-                ),
+            ).animate().fadeIn(delay: 150.ms),
 
-            const SizedBox(height: 24),
+            const SizedBox(height: 26),
 
             const Text(
               'CAST',
@@ -74,7 +89,6 @@ class DetailsScreen extends StatelessWidget {
             ...movie.cast.map(
               (actor) => Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-
                 child: Row(
                   children: [
                     const CircleAvatar(
@@ -89,10 +103,12 @@ class DetailsScreen extends StatelessWidget {
 
                     const SizedBox(width: 10),
 
-                    Text(
-                      actor,
-                      style: const TextStyle(
-                        fontSize: 16,
+                    Expanded(
+                      child: Text(
+                        actor,
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ],
@@ -115,13 +131,15 @@ class DetailsScreen extends StatelessWidget {
             const SizedBox(height: 12),
 
             Container(
+              width: double.infinity,
               padding: const EdgeInsets.all(16),
-
               decoration: BoxDecoration(
                 color: const Color(0xFF1C1C22),
                 borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: Colors.deepPurple.withValues(alpha: 0.5),
+                ),
               ),
-
               child: Text(
                 movie.synopsis,
                 style: const TextStyle(
