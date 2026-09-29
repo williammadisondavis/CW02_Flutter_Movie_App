@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../data/movies_data.dart';
 import 'details_screen.dart';
 
+// Main screen that shows the full list of movies.
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -28,6 +29,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
 
+      // Builds a scrollable card for every movie in the data list.
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: sampleMovies.length,
@@ -46,9 +48,11 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
+            // Makes the entire movie card tappable.
             child: InkWell(
               borderRadius: BorderRadius.circular(18),
 
+              // Opens the DetailsScreen and passes the selected Movie object.
               onTap: () {
                 Navigator.push(
                   context,
@@ -65,6 +69,7 @@ class HomeScreen extends StatelessWidget {
 
                 child: Row(
                   children: [
+                    // Displays the local poster image for the movie.
                     ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: Image.asset(
@@ -77,6 +82,7 @@ class HomeScreen extends StatelessWidget {
 
                     const SizedBox(width: 16),
 
+                    // Shows the main information beside the poster.
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,6 +144,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           )
+              // Gives each card a short entrance animation.
               .animate()
               .fadeIn(
                 duration: 400.ms,

@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 import '../models/movie.dart';
 
+// Screen that shows the full information for one selected movie.
 class DetailsScreen extends StatelessWidget {
   final Movie movie;
 
@@ -30,12 +31,15 @@ class DetailsScreen extends StatelessWidget {
         ),
       ),
 
+      // Lets the page scroll if all of the movie information
+      // does not fit on a smaller screen.
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Large version of the selected movie's poster.
             Center(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(18),
@@ -46,6 +50,7 @@ class DetailsScreen extends StatelessWidget {
                 ),
               ),
             )
+                // Adds a short animation when the details page opens.
                 .animate()
                 .fadeIn(
                   duration: 500.ms,
@@ -56,6 +61,7 @@ class DetailsScreen extends StatelessWidget {
 
             const SizedBox(height: 24),
 
+            // Movie title passed in from HomeScreen.
             Text(
               movie.title,
               style: const TextStyle(
@@ -86,6 +92,7 @@ class DetailsScreen extends StatelessWidget {
 
             const SizedBox(height: 12),
 
+            // Creates one row for each actor in the movie's cast list.
             ...movie.cast.map(
               (actor) => Padding(
                 padding: const EdgeInsets.only(bottom: 8),
@@ -130,6 +137,7 @@ class DetailsScreen extends StatelessWidget {
 
             const SizedBox(height: 12),
 
+            // Displays the movie synopsis in its own section.
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
