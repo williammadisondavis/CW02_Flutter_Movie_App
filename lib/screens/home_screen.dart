@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'details_screen.dart';
 import '../data/movies_data.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,10 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Movie Watchlist'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Movie Watchlist'), centerTitle: true),
       body: ListView.builder(
         padding: const EdgeInsets.all(12),
         itemCount: sampleMovies.length,
@@ -24,10 +22,7 @@ class HomeScreen extends StatelessWidget {
               contentPadding: const EdgeInsets.all(16),
 
               // Temporary movie icon.
-              // We will replace this with the poster image later.
-              leading: const CircleAvatar(
-                child: Icon(Icons.movie),
-              ),
+              leading: const CircleAvatar(child: Icon(Icons.movie)),
 
               title: Text(
                 movie.title,
@@ -37,17 +32,16 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              subtitle: Text(
-                '${movie.cast.length} cast members',
-              ),
+              subtitle: Text('${movie.cast.length} cast members'),
 
               trailing: const Icon(Icons.chevron_right),
 
-              // Navigation will be added in the next step.
+              // Open the DetailsScreen and pass the selected Movie object.
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('${movie.title} selected'),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailsScreen(movie: movie),
                   ),
                 );
               },
