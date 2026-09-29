@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../data/movies_data.dart';
 import 'details_screen.dart';
@@ -10,9 +11,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Movie Watchlist'),
-        centerTitle: true,
+        title: const Text(
+          'Movie Watchlist',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
+
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: sampleMovies.length,
@@ -21,27 +27,32 @@ class HomeScreen extends StatelessWidget {
 
           return Card(
             margin: const EdgeInsets.only(bottom: 16),
-            elevation: 3,
             child: InkWell(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(16),
+
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DetailsScreen(movie: movie),
+                    builder: (context) => DetailsScreen(
+                      movie: movie,
+                    ),
                   ),
                 );
               },
+
               child: Padding(
                 padding: const EdgeInsets.all(12),
+
                 child: Row(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(12),
+
                       child: Image.asset(
                         movie.posterPath,
-                        width: 75,
-                        height: 105,
+                        width: 85,
+                        height: 120,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -55,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                           Text(
                             movie.title,
                             style: const TextStyle(
-                              fontSize: 19,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -65,19 +76,53 @@ class HomeScreen extends StatelessWidget {
                           Text(
                             '${movie.cast.length} cast members',
                             style: TextStyle(
-                              color: Colors.grey.shade700,
+                              color: Colors.grey.shade400,
                             ),
+                          ),
+
+                          const SizedBox(height: 12),
+
+                          const Row(
+                            children: [
+                              Icon(
+                                Icons.touch_app,
+                                size: 17,
+                                color: Colors.deepPurpleAccent,
+                              ),
+
+                              SizedBox(width: 5),
+
+                              Text(
+                                'Tap for details',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.deepPurpleAccent,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ),
 
-                    const Icon(Icons.chevron_right),
+                    const Icon(
+                      Icons.chevron_right,
+                      color: Colors.deepPurpleAccent,
+                    ),
                   ],
                 ),
               ),
             ),
-          );
+          )
+              .animate()
+              .fadeIn(
+                duration: 400.ms,
+                delay: (index * 100).ms,
+              )
+              .slideX(
+                begin: 0.1,
+                end: 0,
+              );
         },
       ),
     );
